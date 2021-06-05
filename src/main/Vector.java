@@ -14,4 +14,12 @@ public class Vector {
     public float dotProduct(Vector v){
         return x*v.x + y*v.y + z*v.z;
     }
+
+    public Vector multiply(float c){
+        return new Vector(c*x, c*y, c*z);
+    }
+
+    public Vector subtract(Vector v){
+        return new Vector(x-v.x, y-v.y, z-v.z);
+    }
 }
