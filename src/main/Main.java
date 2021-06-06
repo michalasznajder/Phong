@@ -14,27 +14,28 @@ public class Main {
 
 
         Surface surface = new Surface(
-                new Coefficients(1f, 1f, 1f), // DIFFERED COEFFICIENTS
-                new Coefficients(1f, 1f, 1f), // SPECULAR COEFFICIENTS
-                new Coefficients(0.5f, 0.5f, 0.5f), // AMBIENT COEFFICIENTS
+                new Coefficients(0.6f, 0.2f, 0.6f), // DIFFERED COEFFICIENTS
+                new Coefficients(0.4f, 0.3f, 0.4f), // SPECULAR COEFFICIENTS
+                new Coefficients(0.02f, 0.02f, 0.02f), // AMBIENT COEFFICIENTS
                 10
         );
-        Coefficients ambient = new Coefficients(0.1f, 0.1f, 0.1f); // AMBIENT RGB INTENSITIES
+        Coefficients ambient = new Coefficients(1f, 1f, 1f); // AMBIENT RGB INTENSITIES
 
         List<Light> lightSources = new ArrayList<>();
         lightSources.add(
-                new Light(0, 0, 20,
+                new Light(10, 10, 15,
                         new Coefficients(1f, 0f, 0f))
         );
 
         lightSources.add(
-                new Light(0, 0, 20,
-                        new Coefficients(0f, 0f, 1f))
+                new Light(20, -5, 15,
+                        new Coefficients(0f, 1f, 0f))
         );
 
+
         lightSources.add(
-                new Light(0, 0, 20,
-                        new Coefficients(0f, 0f, 0f))
+                new Light(-15, -15, 15,
+                        new Coefficients(0f, 0f, 1f))
         );
 
         int i_res = 300;
@@ -44,7 +45,7 @@ public class Main {
 
         float c_0 = 0.1f;
         float c_1 = 0.01f;
-        float c_2 = 0.01f;
+        float c_2 = 0.001f;
 
         BufferedImage resultImage = new BufferedImage(i_res, j_res, 1);
 
@@ -90,7 +91,7 @@ public class Main {
                     float L_s_g = 0;
                     float L_s_b = 0;
 
-                    if (N.dotProduct(I) > 0.5) {
+                    if (N.dotProduct(I) > 0) {
                         float specular_light_intensity_r = (float) (att * light.E.r * Math.pow(I.dotProduct(Os), surface.g));
                         float specular_light_intensity_g = (float) (att * light.E.g * Math.pow(I.dotProduct(Os), surface.g));
                         float specular_light_intensity_b = (float) (att * light.E.b * Math.pow(I.dotProduct(Os), surface.g));
@@ -119,7 +120,7 @@ public class Main {
         }
 
         try {
-            ImageIO.write(resultImage, "png", new File("sphere.png"));
+            ImageIO.write(resultImage, "png", new File("test.png"));
         } catch (IOException var14) {
             System.out.println("The image cannot be stored");
         }
