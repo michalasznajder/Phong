@@ -253,21 +253,23 @@ public class Main {
         Surface surface = new Surface(
                 new Coefficients(0.3f, 0.3f, 0.3f), // DIFFERED COEFFICIENTS
                 new Coefficients(0.4f, 0.4f, 0.4f), // SPECULAR COEFFICIENTS
-                new Coefficients(0.02f, 0.02f, 0.02f), // AMBIENT COEFFICIENTS
+                new Coefficients(0.1f, 0.1f, 0.1f), // AMBIENT COEFFICIENTS
                 10
         );
         Coefficients ambient = new Coefficients(1f, 1f, 1f); // AMBIENT RGB INTENSITIES
 
         List<Light> lightSources = new ArrayList<>();
         lightSources.add(
-                new Light(10, 10, 25,
+                new Light(1, 1, 1,
                         new Coefficients(0f, 1f, 0f))
         );
 
         lightSources.add(
                 new Light(-10, 10, 20,
                         new Coefficients(0f, 0f, 1f))
-        );        lightSources.add(
+        );
+
+        lightSources.add(
                 new Light(-10, -15, 20,
                         new Coefficients(1f, 0f, 0f))
         );
@@ -385,7 +387,7 @@ public class Main {
         }
 
         try {
-            ImageIO.write(resultImage, "png", new File("manyspheres5.png"));
+            ImageIO.write(resultImage, "png", new File("test.png"));
         } catch (IOException var14) {
             System.out.println("The image cannot be stored");
         }
